@@ -1,7 +1,8 @@
 <div *ngIf="steps" class="carousel-container">
 
-  <div class="swiper-button-prev carousel-prev"></div>
-  <div class="swiper-button-next carousel-next"></div>
+  <div *ngIf="!(isHandset$ | async)" class="swiper-button-prev carousel-prev"></div>
+  <div *ngIf="!(isHandset$ | async)" class="swiper-button-next carousel-next"></div>
+
 
   <swiper class="carousel-wrapper" [config]="config">
     <div class="swiper-slide" (click)="setStep(i)" *ngFor="let step of steps.steps; let i = index">

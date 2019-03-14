@@ -89,12 +89,12 @@ getAddressesRequestEffect$: Observable<Action> = this.actions$.pipe(
             }
           ),
           catchError(error => {
-            this.snackBar.open('api_error', '', {
-              duration: 500,
-              panelClass: 'sofaSnackBar',
-              verticalPosition: 'top',
-            });
-            this.router.navigate(['/root/']);
+            // this.snackBar.open(error, '', {
+            //   duration: 500,
+            //   panelClass: 'sofaSnackBar',
+            //   verticalPosition: 'top',
+            // });
+            // this.router.navigate(['/root/']);
             return observableOf(new featureActions.ErrorGetPlacesAction(error));
             }
           )
