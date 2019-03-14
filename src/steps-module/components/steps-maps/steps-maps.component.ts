@@ -1,5 +1,6 @@
 import {Component, Input, NgZone, OnInit} from '@angular/core';
 import {Place} from '../../models/place.model';
+import {MatSnackBar} from '@angular/material';
 
 declare var google: any;
 
@@ -35,7 +36,7 @@ export class StepsMapsComponent implements OnInit {
   personPosition;
   userLocMarkerIsOpen = true;
 
-  constructor() {
+  constructor(private snackBar: MatSnackBar) {
     this.getUserLocation();
   }
 
@@ -267,7 +268,10 @@ export class StepsMapsComponent implements OnInit {
         };
         this.zoom = 12;
       }, () => {
-        alert('No support for geolocation, will be using base location');
+        this.snackBar.open('Not support for geolocation', '', {
+          duration: 200,
+          panelClass: 'sofaSnackBar',
+        });
         this.basePosition = {
           lat: 32.933052,
           lon: 35.082678,

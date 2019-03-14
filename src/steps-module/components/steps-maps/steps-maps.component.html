@@ -7,7 +7,7 @@
   id="map"
   mapTypeControl="true"
   streetViewControl="true"
-  *ngIf="basePosition"
+  *ngIf="basePosition && personPosition else loading"
   [styles]="styles"
   [latitude]="basePosition.lat"
   [longitude]="basePosition.lon"

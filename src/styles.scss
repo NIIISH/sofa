@@ -5,3 +5,13 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.sofaSnackBar{
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #1a6fc3;
+  font-weight: 500;
+  .mat-simple-snackbar{
+    justify-content: space-around;
+  }
+
+}
