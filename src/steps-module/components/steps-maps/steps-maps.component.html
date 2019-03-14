@@ -1,0 +1,97 @@
+<ng-container *ngIf="!placesLoading && places[places.length-1].address then MAP else loading">
+</ng-container>
+
+<ng-template #MAP>
+
+<agm-map
+  id="map"
+  mapTypeControl="true"
+  streetViewControl="true"
+  *ngIf="basePosition"
+  [styles]="styles"
+  [latitude]="basePosition.lat"
+  [longitude]="basePosition.lon"
+  [(zoom)]="zoom"
+  [fullscreenControl]="true"
+  (mapReady)="setLocationButton($event)"
+>
+
+  <div id="locationButton"
+    style="
+  background: none rgb(255, 255, 255);
+   border: 0px;
+    margin: 10px;
+     padding: 0px;
+      position: absolute;
+       cursor: pointer;
+        user-select: none;
+         border-radius: 2px;
+          height: min-content;
+           width: 40px;
+            box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px -1px;
+             overflow: hidden;
+              top: 0px;
+               right: 0px;
+                "
+  >
+    <img
+      style="display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 50%;
+      padding: 5px"
+      src="./assets/mapIcons/ic_action_set_location.png" alt="logo">
+  </div>
+  <!--<button id="but" style="position: relative;"></button>-->
+
+  <agm-marker
+    [iconUrl]="userPositionMarker"
+    title="Your position"
+    [latitude]="personPosition.lat"
+    [longitude]="personPosition.lon">
+    <agm-snazzy-info-window [closeOnMapClick]="false" borderRadius="15px" [border]="{width: '.5px', color: 'grey'}" [(isOpen)]="userLocMarkerIsOpen" [maxWidth]="200" [closeWhenOthersOpen]="true">
+      <ng-template>
+        <span style="font-weight: 600">Your position!</span>
+      </ng-template>
+    </agm-snazzy-info-window >
+  </agm-marker>
+
+
+  <agm-marker
+    [lang]="lang"
+    *ngFor="let place of places; let i = index"
+    [latitude]="place.latitude"
+    [longitude]="place.longitude"
+    [iconUrl]="icons[step]"
+    [id]="place.latitude.toString()+place.longitude.toString()"
+  >
+    <agm-snazzy-info-window [(isOpen)]="place.isOpen" [maxWidth]="500" [closeOnMapClick]="true" [closeWhenOthersOpen]="true">
+      <ng-template>
+        <div>
+        <p style="text-align: center;font-weight:600;font-size: 1.4em">{{place.name}}</p>
+        <p style="text-align: center;font-weight:600;font-size: 1.1em">{{place.address}}</p>
+          <p style="font-weight: 500">Shedule:</p>
+          <mat-divider></mat-divider>
+          <p *ngFor="let item of place.schedule; let i = index">{{'December '+(i+1)+', 1995'| date:"EEE"  }}: {{item}}</p>
+          <p style="font-weight: 500">Phones:</p>
+          <mat-divider></mat-divider>
+          <p *ngFor="let phone of place.phones; let i = index">{{phone}}</p>
+        <button style="width: 100%" mat-stroked-button (click)="redirectToNavigate(place)">set route</button>
+          <br>
+          <br>
+        <button style="width: 100%" mat-stroked-button (click)="redirectToWebSite(place)">go to website</button>
+        </div>
+      </ng-template>
+    </agm-snazzy-info-window>
+  </agm-marker>
+
+</agm-map>
+</ng-template>
+
+
+
+<ng-template #loading>
+  <div class="centered">
+    <div class="triple-spinner"></div>
+  </div>
+</ng-template>

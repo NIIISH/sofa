@@ -1,0 +1,139 @@
+<div [ngStyle]="{'font-size': fontSize+'em'}">
+
+  <svg height="0" xmlns="http://www.w3.org/2000/svg" style="position: absolute">
+    <filter id="drop-shadow">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="4"/>
+      <feOffset dx="12" dy="2" result="offsetblur"/>
+      <feFlood flood-color="rgba(0,0,0,0.2)"/>
+      <feComposite in2="offsetblur" operator="in"/>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </svg>
+
+
+  <mat-toolbar
+    style="
+    z-index: 1000;
+    position: relative;
+    box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.75);
+    background-color: #2594ed;
+    color: white;
+    justify-content: space-between;"
+  >
+      <button
+        *ngIf="!(isHandset$ | async)"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+      >
+        <mat-icon>view_list</mat-icon>
+      </button>
+
+      <button
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+
+      <img
+        routerLink="/"
+        alt="logo"
+        *ngIf="!(isHandset$ | async)"
+        style="height: 75%;width: 8%;cursor: pointer"
+        src="./assets/splash_logo.png">
+
+      <div style="flex: 1;" *ngIf="!(isHandset$ | async)"></div>
+
+      <div style="flex: 2" *ngIf="!(isHandset$ | async)">
+        <span dir="auto" [innerText]="titleText[currLang]"></span>
+      </div>
+      <div style="flex: 0" *ngIf="(isHandset$ | async)" [innerText]="titleText[currLang]">
+        <span dir="auto" [innerText]="titleText[currLang]"></span>
+      </div>
+
+      <!--<input matInput type="search" style="border-radius: 10px;" placeholder="Search">-->
+</mat-toolbar>
+
+
+<mat-drawer-container class="example-container" autosize>
+
+  <mat-drawer #drawer mode="side"
+              [opened]="!(isHandset$ | async)"
+  >
+    <div class="drawer-flex-container">
+
+      <div class="flexbox-1">
+        <div [ngClass]="{'activ-lang': lang.en}" style="cursor: pointer" (click)="changeLang('en')">EN</div>
+        <div [ngClass]="{'activ-lang': lang.ru}" style="cursor: pointer" (click)="changeLang('ru')">RU</div>
+        <div [ngClass]="{'activ-lang': lang.he}" style="cursor: pointer" (click)="changeLang('he')">HE</div>
+        <div [ngClass]="{'activ-lang': lang.fr}" style="cursor: pointer" (click)="changeLang('fr')">FR</div>
+      </div>
+
+      <div  class="flexbox-2">
+        <div id="PLUS" #PLUS (click)="setFontSize(PLUS)">
+          <button class="plus-btn" mat-icon-button>
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+
+        <div style="cursor:pointer;" id="DEFAULT" #DEFAULT (click)="setFontSize(DEFAULT)" class="a-sym">A</div>
+
+        <div id="MINUS" #MINUS (click)="setFontSize(MINUS)">
+          <button class="minus-btn" mat-icon-button>
+            <mat-icon>remove</mat-icon>
+          </button>
+        </div>
+      </div>
+
+      <div class="flexbox-3">
+
+        <div [ngClass]="{'activ-elem': stepsIsActiv}">
+            <button routerLink="/steps" mat-icon-button>
+              <mat-icon>accessibility</mat-icon>
+              <br>
+              <a>STEPS</a>
+            </button>
+        </div>
+
+
+        <div [ngClass]="{'activ-elem': bizIsActiv}">
+            <button routerLink="/biz" mat-icon-button>
+              <mat-icon>domain</mat-icon>
+              <br>
+              <a>Biz</a>
+            </button>
+        </div>
+
+        <div [ngClass]="{'activ-elem': infoIsActiv}">
+            <button routerLink="/info" mat-icon-button>
+              <mat-icon>info_outline</mat-icon>
+              <br>
+              <a>INFO</a>
+            </button>
+        </div>
+
+        <div [ngClass]="{'activ-elem': contactIsActiv}">
+            <button routerLink="/contact" mat-icon-button>
+              <mat-icon>email</mat-icon>
+              <br>
+              <a>CONTACT</a>
+            </button>
+        </div>
+      </div>
+
+    </div>
+
+  </mat-drawer>
+
+  <mat-drawer-content>
+
+    <router-outlet></router-outlet>
+
+  </mat-drawer-content>
+</mat-drawer-container>
+</div>

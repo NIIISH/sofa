@@ -1,0 +1,87 @@
+
+<div class="text-area-grid-container">
+
+  <div class="title">
+
+  <div  [ngStyle]="{'background-color':colors[step.numberOfStep-1]}"
+    style="
+  display: flex;
+  height:100%;
+  flex-direction: row;
+  align-items:center;
+  justify-content:start;
+  color: white;
+   overflow: hidden">
+    <mat-icon
+      style="
+        height: 100%;
+        min-width: 1em;
+        font-size: 4em;
+        "
+      svgIcon="step{{step.numberOfStep}}"
+    >
+    </mat-icon>
+    <p id="titleBlock" style="text-align: center; margin-left:2vw; font-size: 1.3em" >
+      {{step.title}}
+    </p>
+  </div>
+  </div>
+
+  <div class="text" dir="auto">
+    <div class="custom-scroll">
+      <p [innerText]="step.description"></p>
+      <mat-divider></mat-divider>
+      <p [innerText]="step.need"></p>
+    </div>
+  </div>
+
+  <div class="list">
+
+    <ng-container *ngIf="!placesLoading && places[places.length-1].address then list else loading3">
+    </ng-container>
+
+    <ng-template #list>
+      <div class="custom-scroll">
+      <!--<mat-accordion>-->
+        <mat-expansion-panel (opened)="setPosition(place)" style="margin-bottom: .2em; border-radius: .1em" *ngFor="let place of places">
+          <mat-expansion-panel-header>
+          <mat-panel-title
+            style="
+            display: flex;
+            justify-content: space-between;
+            text-align: center;
+            line-height: 85%;
+            "
+          >
+            <!--<div style="height: 100%; width: 20%; background-color: #222222"></div>-->
+              <div style="width: 100%">
+                <span style="font-weight: 500; font-size:.8em">{{place.name}}</span>
+                  <br>
+                <span style="font-weight: 400; font-size:.8em">{{place.address}}</span>
+              </div>
+          </mat-panel-title>
+          </mat-expansion-panel-header>
+            <div>
+              <p style="font-weight:600;font-size: 1.4em">{{place.name}}</p>
+              <p style="font-weight:600;font-size: 1.1em">{{place.address}}</p>
+              <p style="font-weight: 500">Shedule:</p>
+              <mat-divider></mat-divider>
+              <p *ngFor="let item of place.schedule; let i = index">{{'December '+(i+1)+', 1995'| date:"EEE"  }}: {{item}}</p>
+              <p style="font-weight: 500">Phones:</p>
+              <mat-divider></mat-divider>
+              <p *ngFor="let phone of place.phones; let i = index">{{phone}}</p>
+              <button style="width: 100%" mat-button (click)="redirectToWebSite(place)">go to website</button>
+            </div>
+        </mat-expansion-panel>
+      <!--</mat-accordion>-->
+      </div>
+    </ng-template>
+
+    <ng-template #loading3>
+      <!--<mat-spinner color="warn" diameter="95" strokeWidth="5"></mat-spinner>-->
+      <div class="centered">
+      <div class="triple-spinner"></div>
+      </div>
+    </ng-template>
+  </div>
+</div>

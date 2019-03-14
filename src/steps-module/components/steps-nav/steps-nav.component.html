@@ -1,0 +1,15 @@
+<div *ngIf="steps" class="carousel-container">
+
+  <div class="swiper-button-prev carousel-prev"></div>
+  <div class="swiper-button-next carousel-next"></div>
+
+  <swiper class="carousel-wrapper" [config]="config">
+    <div class="swiper-slide" (click)="setStep(i)" *ngFor="let step of steps.steps; let i = index">
+        <mat-icon svgIcon="step{{i+1}}"></mat-icon>
+        <div>{{steps.steps[i].title}}</div>
+      </div>
+  </swiper>
+
+
+</div>
+

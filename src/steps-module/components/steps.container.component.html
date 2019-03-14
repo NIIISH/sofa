@@ -1,0 +1,70 @@
+<ng-container
+  *ngIf="(isStepsLoading$ | async) then LOADING else CONTAINER">
+</ng-container>
+
+<ng-template #CONTAINER>
+<div class="steps-grid-container">
+  <div class="header">
+    <div
+      style="
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      "
+    >
+      <div style="margin: 10px;display: block; height: 100%; width: 100%; background-color: #828286"></div>
+      <div style="margin: 10px;display: block; height: 100%; width: 100%; background-color: #828286"></div>
+      <div style="margin: 10px;display: block; height: 100%; width: 100%; background-color: #828286"></div>
+      <div style="margin: 10px;display: block; height: 100%; width: 100%; background-color: #828286"></div>
+    </div>
+    <!--<app-steps-header></app-steps-header>-->
+  </div>
+
+  <div class="nav">
+    <app-steps-nav [steps]="steps$ | async" (currStep)="setCurrStep($event)"></app-steps-nav>
+    <!--<app-steps-navigations></app-steps-navigations>-->
+  </div>
+  <div class="text">
+    <app-steps-text-area
+      [step]="(steps$ | async).steps[currStep]"
+      [places]="places$ | async"
+      [placesLoading]="isPlacesLoading$ | async"
+      (position)="setPosition($event)"
+    >
+    </app-steps-text-area>
+  </div>
+  <div class="map">
+    <app-steps-maps
+      [places]="places$ | async"
+      [placesLoading]="isPlacesLoading$ | async"
+      [_basePosition]="placePosition"
+      [step]="currStep"
+    ></app-steps-maps>
+  </div>
+</div>
+</ng-template>
+
+
+
+<ng-template  #LOADING>
+
+  <div class="centered">
+  <div class="multi-spinner-container">
+    <div class="multi-spinner">
+      <div class="multi-spinner">
+        <div class="multi-spinner">
+          <div class="multi-spinner">
+            <div class="multi-spinner">
+              <div class="multi-spinner"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+</ng-template>
