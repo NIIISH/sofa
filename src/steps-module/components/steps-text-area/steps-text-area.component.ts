@@ -41,10 +41,7 @@ export class StepsTextAreaComponent implements OnInit {
   }
 
   redirectToWebSite(place: Place) {
-    const temp = place.url.split('www.');
-    const url = 'http://' + temp[1];
-    window
-      .open(url);
+    window.open(`http://${place.url}`, '_blank');
   }
 
   setPosition(place: Place) {
