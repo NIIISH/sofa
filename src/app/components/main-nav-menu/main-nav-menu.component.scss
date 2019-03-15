@@ -308,12 +308,9 @@
   0% {
     margin-left: 0%;
     background-image: none;
-    //width: 300%;
-    //visibility: hidden;
   }
 
   10%{
-    //visibility: hidden;
   }
 
   25%{
@@ -322,18 +319,37 @@
 
   45%{
     margin-left: 150%;
-    //visibility: visible;
   }
 
   60%{
     margin-left: 120%;
-    //background-image: url("~src/assets/isxodnikSideNavHov2.png");
 
   }
 
   100% {
     margin-left: 0%;
     background-image: url("../../../assets/isxodnikSideNavHov2.png");
-    //width: 100%;
   }
 }
+
+.scrollBtn {
+  display: none;
+  position: fixed;
+  bottom: 10px;
+  right: 15px;
+  z-index: 999;
+  border: none;
+  outline: none;
+  background-color: red;
+  color: white;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 10px;
+  font-size: 1em;
+
+  &:hover {
+    background-color: #555;
+  }
+}
+
+

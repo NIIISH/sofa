@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, HostListener, OnDestroy, OnInit} from '@angular/core';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import {Observable, Subscription} from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -114,7 +114,6 @@ export class MainNavMenuComponent implements OnInit, OnDestroy {
   }
 
   setActive(url) {
-    // console.log(this.router.url);
     this.stepsIsActiv = false;
     this.bizIsActiv = false;
     this.infoIsActiv = false;
@@ -157,6 +156,24 @@ export class MainNavMenuComponent implements OnInit, OnDestroy {
       default:
         return 'en';
     }
+  }
+
+  @HostListener('scroll', ['$event'])
+  scrollHandler(event) {
+    this.scrollFunction(event);
+  }
+
+
+  scrollFunction(event) {
+    if (event.target.scrollTop > 160) {
+      document.getElementById('scrollBtn').style.display = 'block';
+    } else {
+      document.getElementById('scrollBtn').style.display = 'none';
+    }
+  }
+
+  topFunction() {
+    document.getElementById('drawerContent').scrollTop = 0;
   }
 
 }

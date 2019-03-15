@@ -13,7 +13,6 @@
     <!--</filter>-->
   <!--</svg>-->
 
-
   <mat-toolbar
     style="
     z-index: 1000;
@@ -130,10 +129,11 @@
 
   </mat-drawer>
 
-  <mat-drawer-content>
+  <mat-drawer-content id="drawerContent" (scroll)="scrollHandler($event)">
 
     <router-outlet></router-outlet>
 
+    <button id="scrollBtn" class="scrollBtn" (click)="topFunction()" title="Go to top">Top</button>
   </mat-drawer-content>
 </mat-drawer-container>
 </div>
