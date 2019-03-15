@@ -18,16 +18,18 @@ and (max-width : 768px){
     grid-template:
       'title' 5em
       'text'  25.5em
-      'list'  22.5em /
+      'divider1' 3em
+      'list'  22.5em
+       'divider2' 3em/
         1fr;
     min-height: 100%;
   }
 
   .list{
-    margin-bottom: 50px;
+    margin-bottom: 30px;
   }
   .text{
-    margin-bottom: 50px;
+    margin-bottom: 30px;
   }
 
 }
@@ -39,16 +41,18 @@ and (max-height : 568px){
     grid-template:
       'title' 5em
       'text'  25.5em
-      'list'  22.5em /
+      'divider1' 3em
+      'list'  22.5em
+      'divider2' 3em/
         1fr;
     min-height: 100%;
   }
 
   .list{
-    margin-bottom: 50px;
+    margin-bottom: 30px;
   }
   .text{
-    margin-bottom: 50px;
+    margin-bottom: 30px;
   }
 
 }

@@ -35,6 +35,9 @@
     </div>
   </div>
 
+  <mat-divider *ngIf="isHandset$ | async" style="grid-area: divider1; margin: 1em 0 1em 0"></mat-divider>
+
+
   <div class="list">
 
     <ng-container *ngIf="!placesLoading && places[places.length-1].address then list else loading3">
@@ -84,4 +87,7 @@
       </div>
     </ng-template>
   </div>
+
+  <mat-divider *ngIf="isHandset$ | async" style="grid-area: divider2; margin: 1em 0 1em 0"></mat-divider>
+
 </div>

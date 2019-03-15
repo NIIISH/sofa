@@ -335,20 +335,29 @@
 .scrollBtn {
   display: none;
   position: fixed;
-  bottom: 10px;
+  bottom: 40px;
   right: 15px;
   z-index: 999;
   border: none;
   outline: none;
-  background-color: red;
+  background-color: rgba(255, 0, 0, 0.85);
   color: white;
   cursor: pointer;
-  padding: 5px;
-  border-radius: 10px;
-  font-size: 1em;
+  padding: .1em .3em .1em .3em;
+  border-radius: 100%;
+  font-size: 1.5em;
+  animation: expand .5s ease-in-out;
 
   &:hover {
     background-color: #555;
+  }
+}
+
+@keyframes expand {
+  from {
+    transform: scale(0);
+    opacity: 0;
+    background: #5470B0;
   }
 }
 

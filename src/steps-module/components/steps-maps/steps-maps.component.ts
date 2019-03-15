@@ -292,10 +292,7 @@ export class StepsMapsComponent implements OnInit {
   }
 
   redirectToWebSite(place: Place) {
-    const temp = place.url.split('www.');
-    const url = 'http://' + temp[1];
-    window
-      .open(url);
+    window.open(`http://${place.url}`, '_blank');
   }
 
   setLocationButton(map) {
@@ -307,6 +304,19 @@ export class StepsMapsComponent implements OnInit {
                 this.userLocMarkerIsOpen = true;
       });
     map.controls[google.maps.ControlPosition.RIGHT_TOP].push(document.getElementById('locationButton'));
+    map.mapTypeControlOptions = {
+      style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
+      position: google.maps.ControlPosition.TOP_LEFT
+    };
+    map.streetViewControlOptions = {
+      position: google.maps.ControlPosition.LEFT_TOP
+    };
+    map.zoomControlOptions = {
+      position: google.maps.ControlPosition.RIGHT_CENTER
+    };
+    map.fullscreenControlOptions = {
+      position: google.maps.ControlPosition.TOP_RIGHT
+    };
   }
 
 

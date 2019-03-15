@@ -104,11 +104,11 @@ export class StepsNavComponent implements OnInit, OnDestroy {
   }
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe([
-    '(max-width: 767px)',
-    '(max-height: 567px)'
+    '(max-width: 768px)',
+    '(max-height: 568px)'
   ])
     .pipe(
-      map(result => result.matches )
+      map(result => result.matches)
     );
 
   ngOnInit() {

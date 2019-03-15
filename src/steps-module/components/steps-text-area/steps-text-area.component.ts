@@ -1,6 +1,9 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Step} from '../../models/steps.model';
 import {Place} from '../../models/place.model';
+import {Observable} from 'rxjs';
+import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-steps-text-area',
@@ -8,6 +11,8 @@ import {Place} from '../../models/place.model';
   styleUrls: ['./steps-text-area.component.scss']
 })
 export class StepsTextAreaComponent implements OnInit {
+
+  constructor(private breakpointObserver: BreakpointObserver) {}
 
   @Input() step: Step;
   @Input() places: Place[];
@@ -26,7 +31,10 @@ export class StepsTextAreaComponent implements OnInit {
     '#9B59B6'
   ];
 
-  constructor() {}
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+    .pipe(
+      map(result => result.matches)
+    );
 
   ngOnInit() {
 

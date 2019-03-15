@@ -19,7 +19,7 @@ and (min-height: 568px){
 }
 
 @media only screen
-and (max-width : 767px){
+and (max-width : 768px), (max-height : 568px){
   .carousel-container {
     display: grid;
     grid-template:
@@ -29,29 +29,9 @@ and (max-width : 767px){
     justify-content: center;
     height: 8em;
   }
-
   .swiper-slide{
     border-left: none;
   }
-
-}
-
-@media only screen
-and (max-height : 567px){
-  .carousel-container {
-    display: grid;
-    grid-template:
-      "carousel"
-      "pagination"/
-        90vw;
-    justify-content: center;
-    height: 8em;
-  }
-
-  .swiper-slide{
-    border-left: none;
-  }
-
 }
 
 .carousel-wrapper{
