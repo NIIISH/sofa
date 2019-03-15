@@ -1,16 +1,26 @@
+<ng-container *ngIf="isHandset$ | async then mobile else pc">
+</ng-container>
+
+<ng-template #mobile>
 <div *ngIf="steps" class="carousel-container">
-
-  <div *ngIf="!(isHandset$ | async)" class="swiper-button-prev carousel-prev"></div>
-  <div *ngIf="!(isHandset$ | async)" class="swiper-button-next carousel-next"></div>
-
-
-  <swiper class="carousel-wrapper" [config]="config">
+  <swiper class="carousel-wrapper" [config]="configMobile">
     <div class="swiper-slide" (click)="setStep(i)" *ngFor="let step of steps.steps; let i = index">
         <mat-icon svgIcon="step{{i+1}}"></mat-icon>
         <div>{{steps.steps[i].title}}</div>
       </div>
   </swiper>
-
-
 </div>
+</ng-template>
 
+<ng-template #pc>
+  <div *ngIf="steps" class="carousel-container">
+    <div class="swiper-button-prev carousel-prev"></div>
+    <div class="swiper-button-next carousel-next"></div>
+    <swiper class="carousel-wrapper" [config]="configPc">
+      <div class="swiper-slide" (click)="setStep(i)" *ngFor="let step of steps.steps; let i = index">
+        <mat-icon svgIcon="step{{i+1}}"></mat-icon>
+        <div>{{steps.steps[i].title}}</div>
+      </div>
+    </swiper>
+  </div>
+</ng-template>

@@ -1,12 +1,56 @@
 
-.carousel-container {
-  display: grid;
-  grid-template:
-    "prev carousel next" /
-      1.5vw   80vw     1.5vw;
-  justify-content: space-evenly;
-  align-content: center;
-  height: 100%;
+@media only screen
+and (min-width : 768px)
+and (min-height: 568px){
+  .carousel-container {
+    display: grid;
+    grid-template:
+      "prev carousel next"/
+        1.5vw   80vw     1.5vw;
+    justify-content: space-evenly;
+    align-content: center;
+    height: 100%;
+
+  }
+  .swiper-slide{
+    border-left: .1px solid #cacaca;
+  }
+
+}
+
+@media only screen
+and (max-width : 767px){
+  .carousel-container {
+    display: grid;
+    grid-template:
+      "carousel"
+      "pagination"/
+        90vw;
+    justify-content: center;
+    height: 8em;
+  }
+
+  .swiper-slide{
+    border-left: none;
+  }
+
+}
+
+@media only screen
+and (max-height : 567px){
+  .carousel-container {
+    display: grid;
+    grid-template:
+      "carousel"
+      "pagination"/
+        90vw;
+    justify-content: center;
+    height: 8em;
+  }
+
+  .swiper-slide{
+    border-left: none;
+  }
 
 }
 
@@ -14,6 +58,10 @@
   grid-area: carousel;
   height: 100%;
   width: 100%;
+}
+
+.pagination{
+  grid-area: pagination;
 }
 
 .carousel-prev {
@@ -55,7 +103,6 @@
   align-items: center;
   overflow: hidden !important;
   cursor: pointer;
-  border-left: 0.1px solid grey;
   padding: 0 0 0 .5em;
   user-select: none;
   max-height: 3.5em !important;
@@ -79,7 +126,6 @@
     border: none;
   }
   &:last-child{
-    border-right: 0.1px solid grey;
   }
 
   &:hover {
